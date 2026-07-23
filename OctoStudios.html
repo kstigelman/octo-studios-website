@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Octo Studios</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#07131F;
+    color:#F4FAFF;
+}
+
+/*==========================
+HEADER
+==========================*/
+
+header{
+
+    position:fixed;
+    top:0;
+    width:100%;
+    height:80px;
+
+    background:rgba(7,19,31,.88);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid #29506A;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:1000;
+
+
+
+}
+
+.header-content{
+
+    display:flex;
+    align-items:center;
+    gap:18px;
+
+}
+
+.logo{
+
+    width:56px;
+    height:56px;
+
+    background:#222;
+
+    border-radius:50%;
+
+    border:2px solid #444;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#777;
+    font-size:12px;
+
+}
+
+header h1{
+
+    font-size:2rem;
+    letter-spacing:4px;
+
+}
+
+/*==========================
+PARALLAX HERO
+==========================*/
+
+.hero{
+
+    height:50vh;
+
+    background:
+        linear-gradient(rgba(7,19,31,.45),
+            rgba(7,19,31,.75)),
+        url("banner.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    background-attachment:fixed;
+
+}
+
+/*==========================
+CONTENT SECTIONS
+==========================*/
+a{
+
+    color:#39C6D6;
+
+}
+
+a:hover{
+
+    color:#F28A45;
+
+}
+
+section{
+
+    background:#0D1E2C;
+
+    position:relative;
+
+    z-index:2;
+
+    padding:100px 12%;
+
+}
+
+h2{
+    color: white;/*#E7C46B;*/
+    text-align:center;
+
+    font-size:2.4rem;
+
+    margin-bottom:40px;
+
+}
+
+/*==========================
+ABOUT
+==========================*/
+
+.about p{
+
+    max-width:900px;
+
+    margin:auto;
+
+    color:#bbbbbb;
+
+    font-size:1.15rem;
+
+    line-height:1.8;
+
+    text-align:center;
+
+}
+
+/*==========================
+PROJECTS
+==========================*/
+
+.project{
+
+    display:flex;
+
+    gap:35px;
+
+    background:#162C3D;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    margin-bottom:30px;
+
+    transition:.25s;
+
+    border:1px solid #29506A;
+
+}
+
+.project:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#39C6D6;
+
+    box-shadow:0 12px 35px rgba(57,198,214,.15);
+
+}
+
+.project img{
+
+    width:300px;
+
+    border-radius:12px;
+
+    object-fit:cover;
+
+}
+
+.project-info{
+
+    flex:1;
+
+}
+
+.project-info h3{
+
+    font-size:2rem;
+
+    margin-bottom:12px;
+
+}
+
+.project-info p{
+
+    color:#b7b7b7;
+
+    line-height:1.7;
+
+    margin-bottom:25px;
+
+}
+
+.button{
+
+    display:inline-block;
+
+    background:#39C6D6;
+
+    color:#07131F;
+
+    font-weight:bold;
+
+    padding:12px 22px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    transition:.2s;
+
+}
+
+.button:hover{
+
+    background:#F28A45;
+
+}
+
+/*==========================
+FOOTER
+==========================*/
+
+footer{
+
+    background:#090909;
+
+    padding:35px;
+
+    text-align:center;
+
+    color:#666;
+
+}
+
+/*==========================
+MOBILE
+==========================*/
+
+@media(max-width:900px){
+
+.project{
+
+    flex-direction:column;
+
+}
+
+.project img{
+
+    width:100%;
+
+}
+
+header h1{
+
+    font-size:1.5rem;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="header-content">
+
+        <div class="logo">
+            Logo
+        </div>
+
+        <h1>Octo Studios</h1>
+
+    </div>
+
+</header>
+
+<div class="hero"></div>
+
+<section class="about">
+
+<h2>Who We Are</h2>
+
+<p>
+
+Octo Studios is a small independent game development team dedicated to
+creating memorable exploration-focused adventures. We believe in crafting
+games with charming worlds, rewarding discovery, and polished gameplay that
+encourages players to slow down and enjoy the journey.
+
+</p>
+
+</section>
+
+<section>
+
+<h2>Projects</h2>
+
+<div class="project">
+
+<img src="tubular-tides.jpg" alt="Tubular Tides">
+
+<div class="project-info">
+
+<h3>Tubular Tides</h3>
+
+<p>
+
+Explore mysterious islands, discover hidden treasure,
+collect powerful relics, and unlock new abilities while uncovering
+the secrets hidden beneath the waves.
+
+</p>
+
+<a class="button" href="#">
+View on Steam →
+</a>
+
+</div>
+
+</div>
+
+<div class="project">
+
+<img src="placeholder.jpg">
+
+<div class="project-info">
+
+<h3>Future Project</h3>
+
+<p>
+
+Our next adventure is already in development.
+Stay tuned for more information.
+
+</p>
+
+<a class="button" href="#">
+Coming Soon
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 Octo Studios
+
+</footer>
+
+</body>
+</html>
