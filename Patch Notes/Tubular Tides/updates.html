@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tubular Tides Updates | Octo Studios</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#07131F;
+    color:#F4FAFF;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*==========================
+HEADER
+==========================*/
+
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    height:80px;
+    background:rgba(7,19,31,.88);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid #29506A;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.header-content{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.logo{
+    width:56px;
+    height:56px;
+    background:#222;
+    border-radius:50%;
+    border:2px solid #444;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#777;
+    font-size:12px;
+    overflow: hidden;
+}
+
+header h1{
+    font-size:2rem;
+    letter-spacing:4px;
+}
+
+/*==========================
+CONTENT SECTIONS
+==========================*/
+a{
+    color:#39C6D6;
+    text-decoration: none;
+    transition:.2s;
+}
+
+a:hover{
+    color:#F28A45;
+}
+
+.breadcrumb {
+    padding: 120px 12% 20px;
+    font-size: 1.1rem;
+    color: #b7b7b7;
+}
+
+.breadcrumb span {
+    margin: 0 10px;
+    color: #29506A;
+}
+
+section.updates-section {
+    background:#0D1E2C;
+    position:relative;
+    z-index:2;
+    padding: 20px 12% 100px;
+}
+
+.updates-header {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.updates-header h2 {
+    color: #F4FAFF;
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+}
+
+.updates-header p {
+    color: #b7b7b7;
+    font-size: 1.15rem;
+}
+
+/*==========================
+UPDATE ROWS
+==========================*/
+
+.update-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #162C3D;
+    border: 1px solid #29506A;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 20px;
+    color: #F4FAFF;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.update-row:hover {
+    transform: translateY(-4px);
+    border-color: #39C6D6;
+    box-shadow: 0 12px 35px rgba(57,198,214,.15);
+}
+
+.update-info {
+    max-width: 80%;
+}
+
+.update-info h3 {
+    font-size: 1.8rem;
+    color: #F28A45;
+    margin-bottom: 8px;
+}
+
+.update-meta {
+    color: #39C6D6;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.update-desc {
+    color: #b7b7b7;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.update-arrow {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #39C6D6;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+.update-row:hover .update-arrow {
+    color: #F28A45;
+    transform: translateX(5px);
+}
+
+.loading-error {
+    text-align: center;
+    color: #F28A45;
+    font-size: 1.4rem;
+    padding: 50px 0;
+}
+
+/*==========================
+FOOTER
+==========================*/
+
+footer{
+    background:#090909;
+    padding:35px;
+    text-align:center;
+    color:#666;
+}
+
+/*==========================
+MOBILE
+==========================*/
+
+@media(max-width:900px){
+    header h1{
+        font-size:1.5rem;
+    }
+    
+    .breadcrumb, section.updates-section {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    
+    .update-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    
+    .update-info {
+        max-width: 100%;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-content">
+        <div class="logo">
+            <img src="../../OCTO.webp" alt="Octo Studios Logo">
+        </div>
+        <h1>Octo Studios</h1>
+    </div>
+</header>
+
+<div class="breadcrumb">
+    <a href="../../index.html">Home</a> <span>/</span> 
+    <a href="../../index.html">Tubular Tides</a> <span>/</span> 
+    Updates
+</div>
+
+<section class="updates-section">
+    <div class="updates-header">
+        <h2>Tubular Tides Patch Notes</h2>
+        <p>Catch up on all the latest development waves, bug fixes, and feature additions.</p>
+    </div>
+
+    <div id="updates-container">
+        <div class="loading-error">Loading updates from Patch Notes folder...</div>
+    </div>
+</section>
+
+<footer>
+    © 2026 Octo Studios
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // Step 1: Read versions.json inside Patch Notes/Tubular Tides/
+    fetch('versions.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Could not find versions.json in Patch Notes/Tubular Tides/');
+            }
+            return response.json();
+        })
+        .then(fileList => {
+            const container = document.getElementById('updates-container');
+            container.innerHTML = ''; 
+
+            if (fileList.length === 0) {
+                container.innerHTML = '<div class="loading-error">No update files found in versions.json.</div>';
+                return;
+            }
+
+            // Step 2: Fetch each update file listed in versions.json
+            const fetchPromises = fileList.map(fileName => 
+                fetch(fileName).then(res => {
+                    if (!res.ok) throw new Error(`Failed to load ${fileName}`);
+                    return res.json();
+                })
+            );
+
+            // Step 3: Render all parsed updates
+            return Promise.all(fetchPromises);
+        })
+        .then(patches => {
+            if (!patches) return;
+
+            const container = document.getElementById('updates-container');
+
+            patches.forEach(patch => {
+                const row = document.createElement('a');
+                row.className = 'update-row';
+                row.href = `patch_notes.html?file=${encodeURIComponent(patch.version + '.json')}`;
+                
+                const infoDiv = document.createElement('div');
+                infoDiv.className = 'update-info';
+                
+                const title = document.createElement('h3');
+                title.textContent = patch.title;
+                
+                const meta = document.createElement('div');
+                meta.className = 'update-meta';
+                meta.textContent = `Version: ${patch.version} | Window: ${patch.window}`;
+                
+                const desc = document.createElement('div');
+                desc.className = 'update-desc';
+                desc.textContent = patch.intro;
+                
+                infoDiv.appendChild(title);
+                infoDiv.appendChild(meta);
+                infoDiv.appendChild(desc);
+                
+                const arrowDiv = document.createElement('div');
+                arrowDiv.className = 'update-arrow';
+                arrowDiv.textContent = 'Read More →';
+                
+                row.appendChild(infoDiv);
+                row.appendChild(arrowDiv);
+                
+                container.appendChild(row);
+            });
+        })
+        .catch(error => {
+            console.error('Error loading patch notes:', error);
+            document.getElementById('updates-container').innerHTML = 
+                `<div class="loading-error">Error loading updates: ${error.message}</div>`;
+        });
+});
+</script>
+
+</body>
+</html>

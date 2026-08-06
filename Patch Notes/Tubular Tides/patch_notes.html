@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tubular Tides Patch Notes | Octo Studios</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#07131F;
+    color:#F4FAFF;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*==========================
+HEADER
+==========================*/
+
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    height:80px;
+    background:rgba(7,19,31,.88);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid #29506A;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.header-content{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.logo{
+    width:56px;
+    height:56px;
+    background:#222;
+    border-radius:50%;
+    border:2px solid #444;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#777;
+    font-size:12px;
+    overflow: hidden;
+}
+
+header h1{
+    font-size:2rem;
+    letter-spacing:4px;
+}
+
+/*==========================
+CONTENT SECTIONS
+==========================*/
+a{
+    color:#39C6D6;
+    text-decoration: none;
+    transition:.2s;
+}
+
+a:hover{
+    color:#F28A45;
+}
+
+.breadcrumb {
+    padding: 120px 12% 20px;
+    font-size: 1.1rem;
+    color: #b7b7b7;
+}
+
+.breadcrumb span {
+    margin: 0 10px;
+    color: #29506A;
+}
+
+section.patch-notes {
+    background:#0D1E2C;
+    position:relative;
+    z-index:2;
+    padding: 20px 12% 100px;
+}
+
+/*==========================
+PATCH CONTAINER
+==========================*/
+
+.patch-container {
+    background:#162C3D;
+    border-radius:18px;
+    padding: 45px;
+    border:1px solid #29506A;
+    box-shadow:0 12px 35px rgba(0,0,0,.3);
+    min-height: 400px;
+}
+
+.patch-header {
+    border-bottom: 1px solid #29506A;
+    padding-bottom: 25px;
+    margin-bottom: 35px;
+}
+
+.patch-header h2 {
+    color: #F4FAFF;
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+}
+
+.patch-header .meta {
+    color: #39C6D6;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.patch-intro {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #bbbbbb;
+    margin-bottom: 40px;
+}
+
+.patch-category {
+    margin-bottom: 40px;
+}
+
+.patch-category h3 {
+    color: #F28A45;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(242, 138, 69, 0.2);
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+.patch-category ul {
+    list-style-position: inside;
+    list-style-type: square;
+    color: #b7b7b7;
+}
+
+.patch-category li {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    padding-left: 10px;
+}
+
+.patch-category li strong {
+    color: #39C6D6;
+}
+
+.loading-error {
+    text-align: center;
+    color: #F28A45;
+    font-size: 1.4rem;
+    padding: 50px 0;
+}
+
+/*==========================
+FOOTER
+==========================*/
+
+footer{
+    background:#090909;
+    padding:35px;
+    text-align:center;
+    color:#666;
+}
+
+/*==========================
+MOBILE
+==========================*/
+
+@media(max-width:900px){
+    header h1{
+        font-size:1.5rem;
+    }
+
+    .breadcrumb, section.patch-notes {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .patch-container {
+        padding: 25px;
+    }
+
+    .patch-header h2 {
+        font-size: 2rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-content">
+        <div class="logo">
+            <!-- Notice the ../../ to point back to your main folder for the image -->
+            <img src="../../OCTO.webp" alt="Octo Studios Logo">
+        </div>
+        <h1>Octo Studios</h1>
+    </div>
+</header>
+
+<div class="breadcrumb">
+    <a href="../../index.html">Home</a> <span>/</span>
+    <a href="../../index.html">Tubular Tides</a> <span>/</span>
+    <a href="updates.html">Updates</a> <span>/</span>
+    <span id="breadcrumb-version">Loading...</span>
+</div>
+
+<section class="patch-notes">
+    <div class="patch-container" id="patch-container">
+        <div class="loading-error">Loading patch notes...</div>
+    </div>
+</section>
+
+<footer>
+    © 2026 Octo Studios
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // 1. Get the file name from the URL (e.g., ?file=v0.1.2-89-RC.json)
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetFile = urlParams.get('file') || 'v0.1.2-89-RC.json';
+
+    // 2. Fetch the JSON file
+    fetch(targetFile)
+        .then(response => {
+            if (!response.ok) throw new Error('File not found');
+            return response.json();
+        })
+        .then(data => {
+            renderPatchNotes(data);
+        })
+        .catch(error => {
+            showError(`Unable to load update data from ${targetFile}.`);
+            console.error(error);
+        });
+
+    // 3. Render the data into the HTML
+    function renderPatchNotes(data) {
+        // Update the tab title and breadcrumb text
+        document.title = `${data.title} ${data.version} | Octo Studios`;
+        document.getElementById('breadcrumb-version').textContent = `Update ${data.version}`;
+
+        const container = document.getElementById('patch-container');
+        container.innerHTML = ''; // Clear loading indicator
+
+        // Create the header
+        const headerDiv = document.createElement('div');
+        headerDiv.className = 'patch-header';
+        headerDiv.innerHTML = `
+            <h2>${data.title}</h2>
+            <div class="meta">Version: ${data.version} | Window: ${data.window}</div>
+        `;
+        container.appendChild(headerDiv);
+
+        // Create the intro paragraph
+        if (data.intro) {
+            const introDiv = document.createElement('div');
+            introDiv.className = 'patch-intro';
+            introDiv.innerHTML = `<p>${data.intro}</p>`;
+            container.appendChild(introDiv);
+        }
+
+        // Loop through and create the categories and bullet points
+        data.categories.forEach(category => {
+            const categoryDiv = document.createElement('div');
+            categoryDiv.className = 'patch-category';
+
+            const titleH3 = document.createElement('h3');
+            titleH3.textContent = category.name;
+            categoryDiv.appendChild(titleH3);
+
+            const ul = document.createElement('ul');
+            category.items.forEach(itemText => {
+                const li = document.createElement('li');
+                li.innerHTML = itemText;
+                ul.appendChild(li);
+            });
+
+            categoryDiv.appendChild(ul);
+            container.appendChild(categoryDiv);
+        });
+    }
+
+    function showError(message) {
+        const container = document.getElementById('patch-container');
+        container.innerHTML = `<div class="loading-error">${message}</div>`;
+    }
+});
+</script>
+
+</body>
+</html>

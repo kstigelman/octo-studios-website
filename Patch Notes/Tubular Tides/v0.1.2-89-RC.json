@@ -1,0 +1,73 @@
+{
+  "title": "Tubular Tides Update",
+  "version": "v0.1.2-89-RC",
+  "window": "July 12, 2026 - August 5, 2026",
+  "intro": "Hey everyone! Grab your floaties because a fresh wave of updates is hitting Tubular Tides. This patch notes document covers all commits and development activity recorded leading up to our playtests! We have been prepping hard, squashing bugs, overhauling our NPCs, adding global localization, and wiring up Steamworks integration!",
+  "categories": [
+    {
+      "name": "New Content and Features",
+      "items": [
+        "<strong>Localization:</strong> Added localization and translation for 28 languages, including Icelandic.",
+        "<strong>Accessories:</strong> Added new NPC accessories.",
+        "<strong>Bug Reporting:</strong> Added an in-game bug report system that sends reports directly to us.",
+        "<strong>Steamworks:</strong> Integrated Steamworks, including a Steam Leaderboard for the 100 percent Medallion Run.",
+        "<strong>Rewards:</strong> Medallions now properly reward unlockable innertubes based on the percentage collected.",
+        "<strong>Collectibles:</strong> Added new medallions to Ezey Island and Cartesian Chaos.",
+        "<strong>UI Additions:</strong> Added a dynamic version visual to the UI for easier build tracking and a fast settings menu accessible via the ESC key.",
+        "<strong>Menus:</strong> Added a new Boot Screen, a New Menu Island, and a pause menu.",
+        "<strong>Discord Link:</strong> You can now join the Octo Studios Discord server through the game!.",
+        "<strong>Systems:</strong> Added a first-time playing message, a background logger, and interactable treasure chests."
+      ]
+    },
+    {
+      "name": "Changes and Improvements",
+      "items": [
+        "<strong>Runtime Saving:</strong> All game settings are now saved and loaded properly during runtime.",
+        "<strong>Visuals:</strong> Updated UI themes, created a dedicated Innertube UI, and updated various NPC visuals across the game.",
+        "<strong>Performance:</strong> Fixed memory caching to prevent future memory leak issues and removed boot video frames.",
+        "<strong>Physics:</strong> Applied adjustments to player buoyancy and water interactions.",
+        "<strong>Items:</strong> Firecrackers now only apply force to the player when properly within the explosion radius."
+      ]
+    },
+    {
+      "name": "Removed Features",
+      "items": [
+        "<strong>Legacy Controls:</strong> Removed the ability to take high-resolution screenshots with the N key and manually change the camera to the rotating perspective with the P key.",
+        "<strong>Physics:</strong> Removed the phasing seen for objects that had physics (99.99% of the time!)",
+        "<strong>World Adjustments:</strong> Removed duplicate medallions and a tiny cactus on Cartesian Chaos. (RIP)"
+      ]
+    },
+    {
+      "name": "Bug Fixes",
+      "items": [
+        "<strong>Shaders:</strong> Fixed an issue where the pixelation shader ruined popup menus and did not affect the main menu.",
+        "<strong>Audio:</strong> Fixed walking and footstep audio playing while the player was mid-air.",
+        "<strong>UI & Menus:</strong> Fixed an issue where multiple menus could be opened at the exact same time.",
+        "<strong>Performance:</strong> Fixed a severe visual stuttering bug affecting the game.",
+        "<strong>Inventory:</strong> Fixed inventory scrolling issues for both fast and slow scroll inputs.",
+        "<strong>Inventory UI:</strong> Fixed inventory slots not displaying item icons or properly removing items when dropped or swapped.",
+        "<strong>Items:</strong> Fixed an issue where a lit stick would go out or reset when picking up a new item or swapping inventory spaces.",
+        "<strong>Collision:</strong> Fixed an issue allowing players to phase through the ice wall on Frostbite Reef.",
+        "<strong>World Collision:</strong> Fixed wooden plank collisions in the secret cave, poor collision with certain island edges, and sloped surfaces being overly difficult to climb.",
+        "<strong>Camera:</strong> Fixed vertical movement and glitching for the first-person camera while swimming.",
+        "<strong>Saving:</strong> Fixed saving issues specific to Ezey Island.",
+        "<strong>Visuals:</strong> Fixed the engraved sign visual offset.",
+        "<strong>Internal Logic:</strong> Fixed player parsing issues and internal errors regarding the RedClassic innertube not existing.",
+        "<strong>Engine:</strong> Fixed the splash text screen not working in the compiled application and an issue allowing multiple game instances to open at once."
+      ]
+    },
+    {
+      "name": "What's Next?",
+      "items": [
+        "<strong>Animations:</strong> Animation expansion for player and NPCs.",
+        "<strong>Systems:</strong> Save system.",
+        "<strong>Character Customization:</strong> Implemented a CharacterCreator node to allow customization of NPC components, colors, and male/female variations."
+      ]
+    },
+    {"name":"Stay Tuned!",
+      "items": [
+        "<strong>More To Come: </strong>More features and content has been planned and slowly worked on behind the scenes not listed here!"
+      ]
+    }
+  ]
+}
